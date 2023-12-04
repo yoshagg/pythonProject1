@@ -1,4 +1,4 @@
-from utils import get_data, get_filtered_data, get_formatted_data, get_last_values, print_operations
+from utils import get_data, get_filtered_data, get_last_values, print_operations
 
 def run():
     d = get_data()
@@ -9,5 +9,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-
-### second commit

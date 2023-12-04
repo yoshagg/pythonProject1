@@ -18,7 +18,7 @@ def get_last_values(data, last_values_count=5):
 
 
 def get_formatted_data(date: str):
-    return datetime.strftime(date,'%d.%m.%Y')
+    return datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
 
 
 def hide_card_number(numbers, to=False):

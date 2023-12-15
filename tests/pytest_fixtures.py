@@ -1,17 +1,14 @@
-from utils import get_data, get_filtered_data, get_formatted_data, get_last_values, print_operations
-from pytest_fixtures import dates, items
-
-def test_get_data():
-    assert get_data() != None
+import pytest
 
 
-def test_get_formatted_data(dates):
-    assert get_formatted_data(dates[0]) == "2019-01-05 00:52:30.108534"
-    assert get_formatted_data(dates[1]) == "2019-07-13 18:51:29.313309"
+@pytest.fixture()
+def dates():
+    return ["2019-01-05T00:52:30.108534", "2019-07-13T18:51:29.313309"]
 
 
-def test_get_filtered_data(items):
-    assert get_filtered_data(items) == [{
+@pytest.fixture()
+def items():
+    return [{
         "id": 921286598,
         "state": "EXECUTED",
         "date": "2018-03-09T23:57:37.537412",
@@ -39,6 +36,20 @@ def test_get_filtered_data(items):
             },
             "description": "Открытие вклада",
             "to": "Счет 35737585785074382265"
+        }, {
+            "id": 957763565,
+            "state": "CANCELED",
+            "date": "2019-01-05T00:52:30.108534",
+            "operationAmount": {
+                "amount": "87941.37",
+                "currency": {
+                    "name": "руб.",
+                    "code": "RUB"
+                }
+            },
+            "description": "Перевод со счета на счет",
+            "from": "Счет 46363668439560358409",
+            "to": "Счет 18889008294666828266"
         },
         {
             "id": 667307132,

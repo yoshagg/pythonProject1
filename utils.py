@@ -33,8 +33,9 @@ def print_operations(data):
     for operation in data:
         if "from" in operation:
             date = get_formatted_data(operation['date'])
-            operations.append(f"""{date} {operation['description']} \n {hide_card_number(operation["from"])} \n"""
+            operations.append(f"""{date} {operation['description']} \n {hide_card_number(operation["from"])}"""
                               f""" -> {hide_card_number(operation['to'])}\n\n""")
+                             ## f"""{operation["amount"]} {operation['name']}\n\n""")
         else:
             pass
     return operations

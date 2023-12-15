@@ -1,13 +1,14 @@
-from utils import get_data, get_filtered_data, get_formatted_data, get_last_values, print_operations
+from utils import get_data, get_filtered_data, get_formatted_data, hide_card_number, print_operations
 from pytest_fixtures import dates, items
+import datetime
 
 def test_get_data():
     assert get_data() != None
 
 
 def test_get_formatted_data(dates):
-    assert get_formatted_data(dates[0]) == "2019-01-05 00:52:30.108534"
-    assert get_formatted_data(dates[1]) == "2019-07-13 18:51:29.313309"
+    assert get_formatted_data(dates[0]) == datetime.datetime(2019, 1, 5, 0, 52, 30, 108534)
+    assert get_formatted_data(dates[1]) == datetime.datetime(2019, 7, 13, 18, 51, 29, 313309)
 
 
 def test_get_filtered_data(items):
@@ -56,3 +57,10 @@ def test_get_filtered_data(items):
             "to": "Счет 96527012349577388612"
         }
     ]
+
+def test_hide_card_number(items):
+    assert hide_card_number(items[0]["from"]) == "Счет  2** **** 3262"
+
+
+def test_print_operations(items):
+    assert print_operations(items) == ['2018-03-09 23:57:37.537412 Перевод организации \n Счет  2** **** 3262 -> Счет  2** **** 1315\n\n', '2019-01-05 00:52:30.108534 Перевод со счета на счет \n Счет  4** **** 8409 -> Счет  1** **** 8266\n\n', '2019-07-13 18:51:29.313309 Перевод с карты на счет \n Maes tr** **** 7170 -> Счет  9** **** 8612\n\n']
